@@ -1,6 +1,9 @@
 # Data is downloaded by scripts, never committed
 data/
 
+# Model checkpoints
+*.pt
+
 # Virtual environment
 .venv/
 
