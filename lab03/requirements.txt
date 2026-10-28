@@ -1,0 +1,8 @@
+# Lab 3 environment; Python 3.11
+# CPU build: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch==2.14.1
+torchvision==0.29.1
+torchinfo==1.8.0
+thop==0.1.1.post2209072238
+numpy==2.4.6
+matplotlib==3.11.2
