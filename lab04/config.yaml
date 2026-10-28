@@ -1,0 +1,83 @@
+# Lab 4 pipeline config. Every step reads only this file; run.py snapshots it into
+# results/manifest.yaml together with the processed-data hash.
+
+seed: 42
+
+data:
+  openml_name: adult
+  openml_version: 2
+  data_home: F:/datasets            # fetch_openml cache, same root as lab 3
+  raw_path: data/raw/adult_raw.csv  # untouched copy written by ingest.py
+  processed_path: data/processed/adult_processed.csv
+  expected_rows: 48842
+  expected_cols: 15
+  rename: {class: income}           # OpenML calls the target "class"
+  target: income
+  positive_label: ">50K"
+
+# Task 3: schema. Types and ranges from the lab manual, categories from the UCI
+# data dictionary (adult.names) plus "?" as the explicit missing token.
+schema:
+  missing_tokens: ["?"]             # NaN is treated as missing too
+  columns:
+    age: {type: int, min: 17, max: 90}
+    workclass:
+      type: category
+      allowed: [Private, Self-emp-not-inc, Self-emp-inc, Federal-gov, Local-gov, State-gov,
+                Without-pay, Never-worked, "?"]
+    fnlwgt: {type: int}
+    education:
+      type: category
+      allowed: [Bachelors, Some-college, 11th, HS-grad, Prof-school, Assoc-acdm, Assoc-voc, 9th,
+                7th-8th, 12th, Masters, 1st-4th, 10th, Doctorate, 5th-6th, Preschool, "?"]
+    education-num: {type: int}
+    marital-status:
+      type: category
+      allowed: [Married-civ-spouse, Divorced, Never-married, Separated, Widowed,
+                Married-spouse-absent, Married-AF-spouse, "?"]
+    occupation:
+      type: category
+      allowed: [Tech-support, Craft-repair, Other-service, Sales, Exec-managerial, Prof-specialty,
+                Handlers-cleaners, Machine-op-inspct, Adm-clerical, Farming-fishing,
+                Transport-moving, Priv-house-serv, Protective-serv, Armed-Forces, "?"]
+    relationship:
+      type: category
+      allowed: [Wife, Own-child, Husband, Not-in-family, Other-relative, Unmarried, "?"]
+    race:
+      type: category
+      allowed: [White, Asian-Pac-Islander, Amer-Indian-Eskimo, Other, Black, "?"]
+    sex:
+      type: category
+      allowed: [Female, Male, "?"]
+    capital-gain: {type: int, min: 0, max: 99999}
+    capital-loss: {type: int, min: 0, max: 4356}
+    hours-per-week: {type: int, min: 1, max: 99}
+    native-country:
+      type: category
+      allowed: [United-States, Cambodia, England, Puerto-Rico, Canada, Germany,
+                Outlying-US(Guam-USVI-etc), India, Japan, Greece, South, China, Cuba, Iran,
+                Honduras, Philippines, Italy, Poland, Jamaica, Vietnam, Mexico, Portugal, Ireland,
+                France, Dominican-Republic, Laos, Ecuador, Taiwan, Haiti, Columbia, Hungary,
+                Guatemala, Nicaragua, Scotland, Thailand, Yugoslavia, El-Salvador,
+                Trinadad&Tobago, Peru, Hong, Holand-Netherlands, "?"]
+    income:
+      type: category
+      allowed: ["<=50K", ">50K"]    # label: no missing allowed
+
+# Task 4
+split:
+  test_size: 0.30
+  stratify: true
+clip_quantiles: [0.01, 0.99]
+numeric: [age, fnlwgt, education-num, capital-gain, capital-loss, hours-per-week]
+categorical: [workclass, education, marital-status, occupation, relationship, race, sex,
+              native-country]
+
+# Task 5
+derived_features: [capital_net, hours_per_age]
+logreg: {max_iter: 2000, C: 1.0}
+
+# Task 6
+label_audit_sample: 50
+
+results_dir: results

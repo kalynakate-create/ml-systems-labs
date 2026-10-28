@@ -1,0 +1,40 @@
+{
+  "without_derived": {
+    "accuracy": 0.854,
+    "f1": 0.6601,
+    "n_features_after_encoding": 105,
+    "iterations": 61
+  },
+  "with_derived": {
+    "accuracy": 0.8578,
+    "f1": 0.6696,
+    "n_features_after_encoding": 107,
+    "iterations": 75
+  },
+  "delta": {
+    "accuracy": 0.0038,
+    "f1": 0.0095
+  },
+  "derived_stats_train": {
+    "capital_net": {
+      "count": 34165.0,
+      "mean": 534.4525,
+      "std": 2542.1371,
+      "min": -1980.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 0.0,
+      "max": 15024.0
+    },
+    "hours_per_age": {
+      "count": 34165.0,
+      "mean": 3.1004,
+      "std": 3.5406,
+      "min": 0.1379,
+      "25%": 1.2903,
+      "50%": 2.0,
+      "75%": 3.4783,
+      "max": 50.0
+    }
+  }
+}

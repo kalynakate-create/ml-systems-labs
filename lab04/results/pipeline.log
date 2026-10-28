@@ -1,0 +1,13 @@
+17:36:48 INFO --- ingest ---
+17:36:48 INFO ingest: 48842 rows, 15 columns (OpenML id 1590)
+17:36:48 INFO --- validate ---
+17:36:49 INFO validate: PASS, 0 violations, 52 exact duplicates, 48842 rows kept
+17:36:49 INFO --- transform ---
+17:36:49 INFO transform: train 34189 -> 34165 after dedup (-24), test 14653 untouched; preprocessor saved
+17:36:49 INFO --- features ---
+17:36:50 INFO features: without acc 0.8540 f1 0.6601 | with acc 0.8578 f1 0.6696
+17:36:50 INFO --- label_audit ---
+17:36:50 INFO label audit: 5 conflict groups (10 rows); sample impossible=0
+17:36:50 INFO --- finalize ---
+17:36:51 INFO finalize: 48818 rows, sha256 adb9e67dbfeb20b544149957e2305010b83541aaffad88af4cb0bc09c2032a2d
+17:36:51 INFO done

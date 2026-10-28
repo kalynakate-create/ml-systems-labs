@@ -1,0 +1,120 @@
+{
+  "split": {
+    "train_rows_before_dedup": 34189,
+    "test_rows": 14653,
+    "train_positive_rate": 0.23936777403775794,
+    "test_positive_rate": 0.23926840919948134
+  },
+  "train_duplicates_dropped": 24,
+  "train_rows_after_dedup": 34165,
+  "missing_in_train": {
+    "workclass": 1923,
+    "occupation": 1933,
+    "native-country": 590
+  },
+  "missing_in_test": {
+    "workclass": 873,
+    "occupation": 873,
+    "native-country": 267
+  },
+  "impute_median": {
+    "age": 37.0,
+    "fnlwgt": 178272.0,
+    "education-num": 10.0,
+    "capital-gain": 0.0,
+    "capital-loss": 0.0,
+    "hours-per-week": 40.0
+  },
+  "impute_mode": {
+    "workclass": "Private",
+    "education": "HS-grad",
+    "marital-status": "Married-civ-spouse",
+    "occupation": "Prof-specialty",
+    "relationship": "Husband",
+    "race": "White",
+    "sex": "Male",
+    "native-country": "United-States"
+  },
+  "clip_bounds": {
+    "age": [
+      17.0,
+      74.0
+    ],
+    "fnlwgt": [
+      27035.2,
+      509629.0
+    ],
+    "education-num": [
+      3.0,
+      16.0
+    ],
+    "capital-gain": [
+      0.0,
+      15024.0
+    ],
+    "capital-loss": [
+      0.0,
+      1980.0
+    ],
+    "hours-per-week": [
+      8.0,
+      80.0
+    ]
+  },
+  "values_clipped": {
+    "train": {
+      "age": {
+        "below": 0,
+        "above": 302
+      },
+      "fnlwgt": {
+        "below": 342,
+        "above": 341
+      },
+      "education-num": {
+        "below": 240,
+        "above": 0
+      },
+      "capital-gain": {
+        "below": 0,
+        "above": 255
+      },
+      "capital-loss": {
+        "below": 0,
+        "above": 340
+      },
+      "hours-per-week": {
+        "below": 311,
+        "above": 226
+      }
+    },
+    "test": {
+      "age": {
+        "below": 0,
+        "above": 143
+      },
+      "fnlwgt": {
+        "below": 127,
+        "above": 145
+      },
+      "education-num": {
+        "below": 88,
+        "above": 0
+      },
+      "capital-gain": {
+        "below": 0,
+        "above": 136
+      },
+      "capital-loss": {
+        "below": 0,
+        "above": 151
+      },
+      "hours-per-week": {
+        "below": 144,
+        "above": 92
+      }
+    }
+  },
+  "fitted_on": "train only",
+  "preprocessor": "results/preprocessor.joblib"
+}

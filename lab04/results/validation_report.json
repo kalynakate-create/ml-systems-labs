@@ -1,0 +1,176 @@
+{
+  "rows_checked": 48842,
+  "rows_dropped": 0,
+  "missing_columns": [],
+  "extra_columns": [],
+  "renamed": {
+    "class": "income"
+  },
+  "columns": {
+    "age": {
+      "type": "int",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "not_numeric": 0,
+        "not_integer": 0,
+        "missing_not_allowed": 0,
+        "below_min_17": 0,
+        "above_max_90": 0
+      },
+      "observed_min": 17.0,
+      "observed_max": 90.0
+    },
+    "workclass": {
+      "type": "category",
+      "missing_nan": 2799,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0
+      },
+      "observed_categories": 8
+    },
+    "fnlwgt": {
+      "type": "int",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "not_numeric": 0,
+        "not_integer": 0,
+        "missing_not_allowed": 0
+      },
+      "observed_min": 12285.0,
+      "observed_max": 1490400.0
+    },
+    "education": {
+      "type": "category",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0
+      },
+      "observed_categories": 16
+    },
+    "education-num": {
+      "type": "int",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "not_numeric": 0,
+        "not_integer": 0,
+        "missing_not_allowed": 0
+      },
+      "observed_min": 1.0,
+      "observed_max": 16.0
+    },
+    "marital-status": {
+      "type": "category",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0
+      },
+      "observed_categories": 7
+    },
+    "occupation": {
+      "type": "category",
+      "missing_nan": 2809,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0
+      },
+      "observed_categories": 14
+    },
+    "relationship": {
+      "type": "category",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0
+      },
+      "observed_categories": 6
+    },
+    "race": {
+      "type": "category",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0
+      },
+      "observed_categories": 5
+    },
+    "sex": {
+      "type": "category",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0
+      },
+      "observed_categories": 2
+    },
+    "capital-gain": {
+      "type": "int",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "not_numeric": 0,
+        "not_integer": 0,
+        "missing_not_allowed": 0,
+        "below_min_0": 0,
+        "above_max_99999": 0
+      },
+      "observed_min": 0.0,
+      "observed_max": 99999.0
+    },
+    "capital-loss": {
+      "type": "int",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "not_numeric": 0,
+        "not_integer": 0,
+        "missing_not_allowed": 0,
+        "below_min_0": 0,
+        "above_max_4356": 0
+      },
+      "observed_min": 0.0,
+      "observed_max": 4356.0
+    },
+    "hours-per-week": {
+      "type": "int",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "not_numeric": 0,
+        "not_integer": 0,
+        "missing_not_allowed": 0,
+        "below_min_1": 0,
+        "above_max_99": 0
+      },
+      "observed_min": 1.0,
+      "observed_max": 99.0
+    },
+    "native-country": {
+      "type": "category",
+      "missing_nan": 857,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0
+      },
+      "observed_categories": 41
+    },
+    "income": {
+      "type": "category",
+      "missing_nan": 0,
+      "missing_token": 0,
+      "violations": {
+        "unknown_category": 0,
+        "missing_not_allowed": 0
+      },
+      "observed_categories": 2
+    }
+  },
+  "exact_duplicate_rows": 52,
+  "total_violations": 0,
+  "status": "PASS"
+}
