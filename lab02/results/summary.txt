@@ -1,0 +1,95 @@
+== 1. Dataset ==
+train X (1257, 64), Y (1257, 10); test X (540, 64), Y (540, 10)
+X range [0.0, 1.0]
+train class counts: [124, 127, 124, 128, 127, 127, 127, 125, 122, 126]
+test  class counts: [54, 55, 53, 55, 54, 55, 54, 54, 52, 54]
+
+== 2-4. Shapes, forward pass, untrained loss ==
+W=16: shapes {'W1': (64, 16), 'b1': (16,), 'W2': (16, 16), 'b2': (16,), 'W3': (16, 10), 'b3': (10,)}, total params 1482
+  output shape (1257, 10), max |row sum - 1| = 4.44e-16 -> PASS
+  untrained loss = 2.3026 (ln 10 = 2.3026)
+W=64: shapes {'W1': (64, 64), 'b1': (64,), 'W2': (64, 64), 'b2': (64,), 'W3': (64, 10), 'b3': (10,)}, total params 8970
+  output shape (1257, 10), max |row sum - 1| = 3.33e-16 -> PASS
+  untrained loss = 2.3026 (ln 10 = 2.3026)
+
+== 5. Gradient check (batch 32, h = 1e-5, pass if rel. error < 1e-6) ==
+-- 5a. GRADED: init std 0.1, 10 random weights with non-zero gradient
+W=16:
+  param index           analytic      numerical    rel.err
+  W1    (43, 9)     1.754435e-03   1.754435e-03   4.75e-09 ok
+  W1    (58, 3)    -3.580056e-04  -3.580056e-04   1.98e-08 ok
+  W1    (11, 5)     1.083326e-03   1.083326e-03   3.04e-09 ok
+  W1    (22, 12)   -1.357979e-03  -1.357979e-03   1.09e-08 ok
+  W2    (14, 7)     4.122765e-03   4.122765e-03   4.21e-10 ok
+  W2    (4, 3)     -4.198370e-05  -4.198371e-05   7.98e-08 ok
+  W1    (52, 12)    9.464322e-04   9.464322e-04   9.35e-09 ok
+  W1    (26, 11)    1.282126e-03   1.282126e-03   4.08e-09 ok
+  W3    (11, 2)    -7.939047e-04  -7.939047e-04   1.62e-08 ok
+  W3    (12, 2)     4.966573e-05   4.966574e-05   3.47e-08 ok
+  passed 10/10 -> PASS
+W=64:
+  param index           analytic      numerical    rel.err
+  W1    (43, 37)   -6.818777e-03  -6.818777e-03   9.43e-10 ok
+  W1    (58, 14)    6.191753e-04   6.191754e-04   7.88e-09 ok
+  W1    (11, 21)   -9.013032e-05  -9.013030e-05   1.12e-07 ok
+  W1    (22, 51)    2.165420e-04   2.165420e-04   1.25e-09 ok
+  W2    (59, 28)    1.753217e-02   1.753217e-02   5.32e-10 ok
+  W1    (50, 52)    1.332335e-02   1.332335e-02   1.31e-10 ok
+  W3    (56, 0)     1.085439e-04   1.085439e-04   3.62e-08 ok
+  W2    (17, 15)   -2.845183e-03  -2.845183e-03   3.67e-09 ok
+  W1    (52, 50)    5.211648e-03   5.211648e-03   1.50e-09 ok
+  W1    (26, 47)   -1.385521e-03  -1.385521e-03   1.20e-08 ok
+  passed 10/10 -> PASS
+-- 5b. DIAGNOSTIC: spec init std 0.01, 10 fully random weights
+W=16:
+  param index           analytic      numerical    rel.err
+  W1    (43, 9)     1.738669e-05   1.738669e-05   4.05e-09 ok
+  W1    (58, 3)    -3.388117e-06  -3.388134e-06   2.56e-06 FAIL
+  W1    (11, 5)     1.030564e-05   1.030562e-05   8.79e-07 ok
+  W1    (22, 12)   -1.358120e-05  -1.358123e-05   8.55e-07 ok
+  W2    (14, 7)     4.115126e-05   4.115126e-05   2.20e-08 ok
+  W1    (50, 13)    0.000000e+00   0.000000e+00   0.00e+00 ok
+  W3    (14, 0)     0.000000e+00   0.000000e+00   0.00e+00 ok
+  W2    (4, 3)     -4.199932e-07  -4.199974e-07   4.95e-06 FAIL
+  W1    (52, 12)    9.193064e-06   9.193069e-06   2.59e-07 ok
+  W1    (26, 11)    1.236642e-05   1.236642e-05   7.65e-08 ok
+  passed 8/10 -> FAIL
+W=64:
+  param index           analytic      numerical    rel.err
+  W1    (43, 37)   -6.630082e-05  -6.630083e-05   6.09e-08 ok
+  W1    (58, 14)   -2.340224e-06  -2.340217e-06   1.49e-06 FAIL
+  W1    (11, 21)    1.741080e-06   1.741096e-06   4.63e-06 FAIL
+  W1    (22, 51)    1.760984e-06   1.760991e-06   2.08e-06 FAIL
+  W2    (59, 28)    1.766366e-04   1.766366e-04   3.00e-08 ok
+  W1    (50, 52)    1.273228e-04   1.273228e-04   2.78e-09 ok
+  W3    (56, 0)     8.832008e-07   8.832046e-07   2.14e-06 FAIL
+  W2    (17, 15)   -3.232892e-05  -3.232892e-05   7.95e-08 ok
+  W1    (52, 50)    5.453342e-05   5.453344e-05   2.42e-07 ok
+  W1    (26, 47)   -1.428701e-05  -1.428699e-05   4.57e-07 ok
+  passed 6/10 -> FAIL
+
+== 6. Training (SGD, batch 32, 50 epochs) ==
+-- init N(0, 0.01) as std = 0.01 (spec)
+W=16  lr=0.001  final train loss 2.3025  test loss 2.3025  test acc 0.1019  (0.6s)
+W=16  lr=0.01   final train loss 2.3025  test loss 2.3025  test acc 0.1019  (0.6s)
+W=16  lr=0.1    final train loss 1.2317  test loss 1.2872  test acc 0.4852  (0.6s)
+W=64  lr=0.001  final train loss 2.3025  test loss 2.3025  test acc 0.1019  (0.9s)
+W=64  lr=0.01   final train loss 2.3023  test loss 2.3023  test acc 0.1019  (1.0s)
+W=64  lr=0.1    final train loss 0.2162  test loss 0.2847  test acc 0.9111  (1.0s)
+loss curves -> results/loss_curves.png
+-- init N(0, 0.01) as variance, std = 0.1 (supplementary)
+W=16  lr=0.001  final train loss 2.2918  test loss 2.2915  test acc 0.1315  (0.6s)
+W=16  lr=0.01   final train loss 1.3362  test loss 1.3208  test acc 0.5648  (0.6s)
+W=16  lr=0.1    final train loss 0.0518  test loss 0.1693  test acc 0.9407  (0.6s)
+W=64  lr=0.001  final train loss 2.1972  test loss 2.1958  test acc 0.3741  (1.0s)
+W=64  lr=0.01   final train loss 0.2824  test loss 0.3111  test acc 0.9148  (1.0s)
+W=64  lr=0.1    final train loss 0.0130  test loss 0.1186  test acc 0.9630  (0.9s)
+loss curves -> results/loss_curves_std0.1.png
+per-epoch log -> results/training_log.txt
+
+== 7. Timing (median of 100 runs) ==
+    W  batch  forward, us  backward, us  bwd/fwd  MFLOP fwd  MFLOP bwd
+   16     32         67.6          76.0     1.12      0.092      0.119
+   16   1257        804.9         747.1     0.93      3.620      4.666
+   64     32        102.7         133.5     1.30      0.565      0.868
+   64   1257       1695.6        2624.6     1.55     22.204     34.110
